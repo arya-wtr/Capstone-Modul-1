@@ -8,7 +8,7 @@ print(' ')
 print('''Notes Test (User ID) : ketik ADMIN/admin untuk masuk ke Program Administrator, 
 ketik Nama Anda untuk masuk ke Program Customer''')
 print(' ')
-user_id = input('Masukkan ID User Anda : ').upper() 
+user_id = input('Masukkan ID User Anda : ').strip().upper() 
 #ketik ADMIN/admin untuk masuk ke program administrator, ketik nama untuk masuk ke program customer
 #bisa menggunakan password, tapi agar mudah diakses jadi dihapuskan
 
@@ -16,7 +16,6 @@ print(' ')
 
 #========================================== loading & intro =================================================
 #loading screen & intro
-
 def loading_screen():
     print('Tekan ENTER untuk kembali ke menu utama...')
     input()
@@ -42,7 +41,7 @@ def dashboard():
 
 intro()
 
-#list
+#collection type data
 data_mobil = [
     {
         'Plat Nomor': 'B6324WFG',
@@ -165,9 +164,7 @@ def filter_data_cust(filter_type, filter_value, additional_filter_type=None, add
         elif filter_type == 'Model' and filter_value == mobil['Model']:
             if additional_filter_type is None or (additional_filter_type in mobil and mobil[additional_filter_type] == additional_filter_value):
                 filtered_data.append(mobil)
-        elif filter_type == 'Customer' and filter_value == mobil['Customer']:
-            if additional_filter_type is None or (additional_filter_type in mobil and mobil[additional_filter_type] == additional_filter_value):
-                filtered_data.append(mobil)
+    
 
     #hasil      
     print("Laporan Data Mobil Rental:")
@@ -418,7 +415,7 @@ def ubah_data_mobil():
             break  
         else:
             print("Plat nomor tidak ada. Silakan masukkan plat nomor yang sesuai.")
-            break  
+  
 
     for mobil in data_mobil:
         if mobil['Plat Nomor'] == plat_nomor:
@@ -510,7 +507,7 @@ def ubah_data_customer():
             break  
         else:
             print("Plat nomor tidak ada. Silakan masukkan plat nomor yang sesuai.")
-            break   
+   
 
     for mobil in data_mobil:
         if mobil['Plat Nomor'] == plat_nomor:    
@@ -615,7 +612,7 @@ def hapus_data_mobil():
             break  
         else:
             print("Plat nomor tidak ada. Silakan masukkan plat nomor yang sesuai.")
-            break   
+              
 
     for mobil in data_mobil:
         if mobil['Plat Nomor'] == plat_nomor:
@@ -649,8 +646,6 @@ def hapus_data_mobil():
                 else:
                     print('Pilihan tidak valid. Harap masukkan [Y/N].')
             break
-           
-        
                        
     
 #menu delete data
@@ -714,30 +709,6 @@ def print_menu_admin():
     
     print("=" * (col1_width + col2_width + 3))
 
-#main menu untuk customer
-def print_menu_customer():
-    #list main menu
-    menu_options = [
-        (1, 'Data Rental Mobil Hari ini'),
-        (2, 'Pemesanan & Customer Service'),
-        (3, 'Exit')
-    ]
-
-    #spacing
-    col1_width = 5
-    col2_width = 25
-
-    #print tabel
-    print("=" * (col1_width + col2_width + 3))
-    print(f"{'No':<{col1_width}} | {'Menu':<{col2_width}}")
-    print("-" * (col1_width + col2_width + 3))
-
-    #print menu
-    for option, menu in menu_options:
-        print(f"{option:<{col1_width}} | {menu:<{col2_width}}")
-    
-    print("=" * (col1_width + col2_width + 3))
-
 #main menu loop untuk admin
 def main_admin():
     while True:
@@ -768,6 +739,30 @@ def main_admin():
         else:
             print("Pilihan tidak valid. Silahkan pilih menu antara [1-5].")
             print(' ')
+
+#main menu untuk customer
+def print_menu_customer():
+    #list main menu
+    menu_options = [
+        (1, 'Data Rental Mobil Hari ini'),
+        (2, 'Pemesanan & Customer Service'),
+        (3, 'Exit')
+    ]
+
+    #spacing
+    col1_width = 5
+    col2_width = 25
+
+    #print tabel
+    print("=" * (col1_width + col2_width + 3))
+    print(f"{'No':<{col1_width}} | {'Menu':<{col2_width}}")
+    print("-" * (col1_width + col2_width + 3))
+
+    #print menu
+    for option, menu in menu_options:
+        print(f"{option:<{col1_width}} | {menu:<{col2_width}}")
+    
+    print("=" * (col1_width + col2_width + 3))
 
 #main menu loop untuk customer
 def main_customer():
